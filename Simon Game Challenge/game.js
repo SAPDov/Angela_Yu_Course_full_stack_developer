@@ -23,15 +23,7 @@ $(".btn").click(function (){
 });
 
 
-function checkAnswer(currentLevel){
 
-    if (userClickedPattern[currentLevel] === gamePattern[currentLevel]){
-        setTimeout(function [])
-            nextSequence();
-    }
-}
-
-checkAnswer();
 
 // function generate a new random number between 0 and 3
 function nextSequence(){
@@ -45,21 +37,28 @@ function nextSequence(){
     level ++;
 }
 
-
 function makeSound (key) {
     var audio = new Audio ("sounds/" + key + ".mp3");
     // audio.muted = true;
     audio.play();
 }
 
-
-
 function animatePress(currentColour){
         $("#" + currentColour).addClass("pressed");
         setTimeout(function () {
             $("#" + currentColour).removeClass("pressed");
           }, 100);        
-
 }
 
+function checkAnswer(currentLevel){
+    console.log(userClickedPattern.length);
+    console.log(gamePattern.length);
+
+    if (userClickedPattern[currentLevel] === gamePattern[currentLevel]){
+        if (userClickedPattern.length === gamePattern.length){
+            setTimeout(function() {
+                nextSequence(); }, 500);
+           }
+        }
+    }
 
