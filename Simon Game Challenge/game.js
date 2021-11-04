@@ -2,13 +2,17 @@
 var buttonColours = ["red", "blue", "green", "yellow"];
 var gamePattern = [];
 var userClickedPattern = [];
+var started = false;
 var level = 0;
 
 
 $(document).keydown(function(event){
-    
-    $("#level-title").text("level " + level);
-    nextSequence();
+    if(!started) {
+        $("#level-title").text("level " + level);
+        nextSequence();
+        started = true;
+    }
+   
 });
 
 $(".btn").click(function (){
@@ -22,7 +26,26 @@ $(".btn").click(function (){
     checkAnswer(userClickedPattern.length-1);
 });
 
+function checkAnswer(currentLevel){
+    console.log(userClickedPattern.length);
+    console.log(gamePattern.length);
 
+    if (userClickedPattern[currentLevel] === gamePattern[currentLevel]){
+        if (userClickedPattern.length === gamePattern.length){
+            setTimeout(function() {
+                nextSequence();
+             }, 500);
+           }
+        }
+    else {  
+        setTimeout(function () {
+           $("#level-title").text("You are wrong");
+          }, 100);
+        }        
+        $("#level-title").text("Press A key to Start"); 
+        started = false;
+    
+    }
 
 
 // function generate a new random number between 0 and 3
@@ -50,15 +73,5 @@ function animatePress(currentColour){
           }, 100);        
 }
 
-function checkAnswer(currentLevel){
-    console.log(userClickedPattern.length);
-    console.log(gamePattern.length);
 
-    if (userClickedPattern[currentLevel] === gamePattern[currentLevel]){
-        if (userClickedPattern.length === gamePattern.length){
-            setTimeout(function() {
-                nextSequence(); }, 500);
-           }
-        }
-    }
 
