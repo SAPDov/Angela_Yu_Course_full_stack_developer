@@ -5,14 +5,17 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+app.set('view engine', 'ejs');
+
 app.get("/", function(req,res){
     var today = new Date();
+    var currentDay = today.getDay();
+    var day = today.toLocaleString('en-US', {  weekday: 'long' });
 
-    if (today.getDay() === 6 || today.getDay() ===0 ){
-      res.send('<h1>Yaaa it\'s the weekend</h1>');  
-    } else {
-        res.send('BOOO');
+    if (currentDay === 6 || currentDay === 0 ){
+            } else {
     }
+    res.render('list', {kindOfday: day});
 });
 
 
