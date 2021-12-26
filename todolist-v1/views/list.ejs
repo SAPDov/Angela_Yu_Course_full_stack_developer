@@ -5,24 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-        <h1><%= kindOfday %></h1> 
-        <ul>
-            <% if (NewListItems.length >= 0 ){ %>
-               <% for (var i=0; i<=NewListItems.length; i++ ){ %>
-                    <li> <%= NewListItems[i] %> </li>
-                <% } %>  
-            <% } else { %>
-                 <p>Add a new to do</p>
-             <% } %>
-        </ul>
+    <div class="box" id="heading">
+        <h1><%= listTitle %></h1>
+    </div>
+    <div class="box">  
+        <% for (let i=0; i<NewListItems.length; i++ ){ %>
+        <div class="item">
+            <input type="checkbox">
+            <p> <%= NewListItems[i] %> </p> 
+        </div>
+        <% } %>   
 
-        <form class= "" action="/" method="post">
-           <label for="todo">New Todo:</label>
-           <input type="text" name="newItem" required>
-           <button type="submit">Add</button> 
+        <form class= "item" action="/" method="post">
+           <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+           <button type="submit" name="list" value=<%= listTitle %>>+</button> 
         </form>
-
+    </div>      
 </body>
+<footer> SAP Dov</footer>
 </html>
